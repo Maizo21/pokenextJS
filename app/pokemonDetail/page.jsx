@@ -3,6 +3,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 
 const pokemonDetail = () => {
@@ -26,32 +27,34 @@ const pokemonDetail = () => {
 
   return (
     <>
-      <h1>Pokemon</h1>
+      <h1>Pokemon Detail</h1>
 
       <main>
+
+        <Suspense fallback={<div>Cargango...</div>}></Suspense>
+
+
         {pokemon && (
-          <section className='pokemon-details'>
-            <h2>{pokemon.name}</h2>
-            <article>
-              <p>ID: {pokemon.id}</p>
-              <p>Altura: {pokemon.height}</p>
-              <p>Peso: {pokemon.weight}</p>
-              <p>Experiencia base: {pokemon.base_experience}</p>
-              {pokemon.types && (
-                <p>Tipo: {pokemon.types.map((type, index) => (
-                  <span key={index}>{type.type.name}. </span>
-                ))}</p>
-              )}
+          <section className='pokemon-details' >
+            <h2>Here is the detail of {pokemon.name}</h2>
+            <p>ID: {pokemon.id}</p>
+            <p>Altura: {pokemon.height}</p>
+            <p>Peso: {pokemon.weight}</p>
+            <p>Experiencia base: {pokemon.base_experience}</p>
+            {pokemon.types && (
+              <p>Tipo: {pokemon.types.map((type, index) => (
+                <span key={index}>{type.type.name}, </span>
+              ))}</p>
+            )}
 
-              {pokemon.stats && (
-                <p>Estadisticas: <br/> {pokemon.stats.map((stat, index) => (
-                  <span key={index}>{stat.stat.name}: {stat.base_stat}. </span>
-                ))}</p>
-              )}
-            </article>
-
+            {pokemon.stats && (
+              <p>Estadisticas: {pokemon.stats.map((stat, index) => (
+                <span key={index}>{stat.stat.name}: {stat.base_stat}, </span>
+              ))}</p>
+            )}
+            <p>Picture:</p>
             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonID}.png`} alt={`Pokemon ${pokemonID} picture`} />
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonID}.png`} alt={`Pokemon ${pokemonID} picture`} className='in-game' />
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonID}.png`} alt={`Pokemon ${pokemonID} picture`} />
 
             {pokemon.cries && (
               <>
@@ -63,18 +66,8 @@ const pokemonDetail = () => {
               </>
             )}
 
-
-
           </section>
         )}
-
-        {!pokemon && (
-          <section className='pokemon-details'>
-
-          </section>
-        )}
-
-
       </main>
 
     </>
