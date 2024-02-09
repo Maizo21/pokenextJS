@@ -63,8 +63,18 @@ const pokemonDetail = () => {
               </>
             )}
 
+
+
           </section>
         )}
+
+        {!pokemon && (
+          <section className='pokemon-details'>
+
+          </section>
+        )}
+
+
       </main>
 
     </>
