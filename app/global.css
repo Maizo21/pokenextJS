@@ -134,6 +134,17 @@ ul.pokemons-container li a img{
     border-radius: 50%;
 }
 
+body ul.pokemons-container .missingno-text{
+    grid-column: 1/-1;
+    text-align: center;
+    color: #fff;
+    background: #0000000f;
+    padding: 10px;
+    border-radius: 8px;
+    backdrop-filter: brightness(0.89);
+    margin-top: 20px;
+}
+
 
 /*Pokemon details*/
 

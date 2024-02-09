@@ -30,7 +30,7 @@ const pokemonDetail = () => {
 
       <main>
         {pokemon && (
-          <section className='pokemon-details' >
+          <section className='pokemon-details'>
             <h2>{pokemon.name}</h2>
             <article>
               <p>ID: {pokemon.id}</p>

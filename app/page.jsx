@@ -51,7 +51,7 @@ export const Page = () => {
         </div>
         
 
-        <ul className='pokemons-container'l>
+        <ul className='pokemons-container'>
             {pokemonFilter && pokemonFound && pokemonFilter.map((pokemon, index) => (
                 <li key={index} className={`pokemon ${pokemon.url.split('pokemon/',-1)[1].replace('/','')}`}>
                   <Link href={`/pokemonDetail?id=${pokemon.url.split('pokemon/',-1)[1].replace('/','')}`}>
@@ -60,7 +60,7 @@ export const Page = () => {
                   </Link>
                 </li>
             ))}
-            {!pokemonFound && <p className='missingno-container'>Pokémon no encontrado... o si? <Link href="/missingno">🚚</Link></p>}
+            {!pokemonFound && <p className='missingno-text'>Pokémon no encontrado... o si? <Link href="/missingno">🚚</Link></p>}
         </ul>
     </>
   );
