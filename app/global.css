@@ -95,6 +95,17 @@ input{
     outline: none;
 }
 
+.loading{
+    display: grid;
+    place-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #0000000f;
+    border-radius: 8px;
+    backdrop-filter: brightness(0.89);
+    margin: 80px 20px;
+}
+
 ul.pokemons-container{
     margin-top: 80px;
     display: grid;
@@ -245,6 +256,10 @@ footer a{
 @media only screen and (min-width: 100px) and (max-width: 830px) {
     body{
         padding: 20px;
+    }
+
+    body:has(.missingno-text){
+        height: 100vh;
     }
 
     body:has(.pokemon-details),

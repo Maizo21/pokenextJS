@@ -11,11 +11,14 @@ export const Page = () => {
   const [pokemonFilter, setPokemonFilter] = useState([]);
   const [pokemonFound, setPokemonFound] = useState(true);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getPokemonData();
       setPokemonData(data);
       setPokemonFilter(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -50,6 +53,7 @@ export const Page = () => {
           <input type="text" placeholder="Nombre" onKeyUpCapture={ (e)=>{searchPokemon(e)} } />
         </div>
         
+        {loading && <p className='loading'>Cargando... <span><img src="/images/loading-poke.gif" alt="loading pokeball gif" /></span></p> }
 
         <ul className='pokemons-container'>
             {pokemonFilter && pokemonFound && pokemonFilter.map((pokemon, index) => (
