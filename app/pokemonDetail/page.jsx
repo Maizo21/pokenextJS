@@ -35,8 +35,8 @@ const pokemonDetail = () => {
               <article>
                 <h2>{pokemon.name}</h2>
                 <p>ID: {pokemon.id}</p>
-                <p>Altura: {pokemon.height}</p>
-                <p>Peso: {pokemon.weight}</p>
+                <p>Altura: {pokemon.height / 10} m.</p>
+                <p>Peso: {pokemon.weight / 10} kg.</p>
                 <p>Experiencia base: {pokemon.base_experience}</p>
                 {pokemon.types && (
                   <p>Tipo: {pokemon.types.map((type, index) => (

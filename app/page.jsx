@@ -64,7 +64,7 @@ export const Page = () => {
                   </Link>
                 </li>
             ))}
-            {!pokemonFound && <p className='missingno-text'>Pokémon no encontrado... o si? <Link href="/missingno">🚚</Link></p>}
+            {!pokemonFound && <p className='missingno-text'>Pokémon no encontrado... ¿o si? <Link href="/missingno">🚚</Link></p>}
         </ul>
     </>
   );

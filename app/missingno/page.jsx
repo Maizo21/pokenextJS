@@ -4,7 +4,7 @@ import Link from 'next/link'
 const page = () => {
   return (
     <section className='pokemon-details missingno-page'>
-        <h2>Missingno 👻</h2>
+        <h2>Missingno 👾👻</h2>
         <p>ID: ¿¿¿???</p>
         <p>Altura: ¿¿¿???</p>
         <p>Peso: ¿¿¿???</p>
