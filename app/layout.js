@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar"
 import './global.css'
 export const metadata = {
-  title: 'pokeAPI nextJS',
+  title: 'Pokedex',
   description: 'Pokedex with nextJS',
   keywords: 'pokedex, nextjs, pokemon, pokeapi, api, react, javascript, maizo21',
 }

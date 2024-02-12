@@ -47,7 +47,7 @@ export const Page = () => {
 
   return (
     <>
-        <h1>PokeAPI</h1>
+        <h1>PokeNext</h1>
         <h2>Busca tu pokémon favorito</h2>
         <div className='input-container'>
           <input type="text" placeholder="Nombre" onKeyUpCapture={ (e)=>{searchPokemon(e)} } />
