@@ -1,4 +1,5 @@
-import Navbar from "../components/Navbar"
+import Navbar from "../components/Navbar/Navbar"
+import Footer from "../components/Footer/Footer"
 import './global.css'
 export const metadata = {
   title: 'Pokedex',
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
         </main>
         
         <footer>
-          <p>made with ❤️ by <a href="https://github.com/Maizo21">Maizo21</a></p>
+          <Footer />
         </footer>
         </body>
     </html>

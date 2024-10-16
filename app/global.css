@@ -287,10 +287,20 @@ footer a{
 
     ul.pokemons-container{
         margin-top: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 
     ul.pokemons-container li a p{
         font-size: 1.2rem;
+    }
+
+    .pokemon-details{
+        place-content: center;
+
+    }
+
+    .pokemon-details article{
+        padding: 15px 20px;
     }
 
     .pokemon-details img{

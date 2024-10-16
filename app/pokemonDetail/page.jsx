@@ -4,11 +4,13 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import Loading from '../../components/Loading/Loading';
 
 
 const pokemonDetail = () => {
 
   const [pokemon, setPokemon] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const searchParams = useSearchParams()
   let pokemonID = searchParams.get('id');
@@ -17,10 +19,14 @@ const pokemonDetail = () => {
     const fetchData = async () => {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`);
       const data = await response.json();
+      setTimeout(() => {
       setPokemon(data);
+      setLoading(false);
+      }, 500);
       console.log(data);
     };
     fetchData();
+
   }
   , []);
 
@@ -29,7 +35,9 @@ const pokemonDetail = () => {
       <h1>Pokemon Detail</h1>
 
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
+          {loading && <Loading />}
+
           {pokemon && (
             <section className='pokemon-details' >
               <article>
@@ -65,6 +73,7 @@ const pokemonDetail = () => {
 
             </section>
           )}
+          
         </Suspense>
       </main>
 

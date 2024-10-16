@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { getPokemonData } from './data/pokemon';
+import Loading from '../components/Loading/Loading';
 import Link from 'next/link'
+import Pagination from '../components/Pagintation/Pagination';
 
 export const Page = () => {
   const [pokemonData, setPokemonData] = useState([]);
-  const [search, setSearch] = useState('');
-
+  const [paginationData, setPaginationData] = useState([]);
   const [pokemonFilter, setPokemonFilter] = useState([]);
   const [pokemonFound, setPokemonFound] = useState(true);
 
@@ -17,30 +18,34 @@ export const Page = () => {
     const fetchData = async () => {
       const data = await getPokemonData();
       setPokemonData(data);
-      setPokemonFilter(data);
+
+      setPokemonFilter(pokemonData.slice(0, 20));
       setLoading(false);
+      setPaginationData(data);
     };
     fetchData();
-  }, []);
+  }, []);   
 
   const searchPokemon = (e) => {
-    setSearch(e.target.value);
-    console.log(search);
+    console.log(e.target.value);
+    const searchValue = e.target.value;
 
-    if(search.trim() == '' || e.target.value == '' || search == '') {
-      setPokemonFilter(pokemonData);
+    if(searchValue.trim() == '') {
+      setPokemonFilter(pokemonData.slice(0, 20));
+      setPaginationData(pokemonData);
       setPokemonFound(true);
       return;
     }else{
       const filteredPokemon = pokemonData.filter((pokemon) => {
-        return pokemon.name.toLowerCase().includes(search.toLowerCase());
+        return pokemon.name.toLowerCase().includes(searchValue.toLowerCase());
       });
       setPokemonFilter(filteredPokemon);
-      console.log(filteredPokemon);
+      setPaginationData(filteredPokemon);
 
       if(filteredPokemon.length == 0){
         setPokemonFound(false);
         setPokemonFilter([]);
+        setPaginationData([]);
       }
     }
   };
@@ -50,10 +55,10 @@ export const Page = () => {
         <h1>PokeNext</h1>
         <h2>Busca tu pokémon favorito</h2>
         <div className='input-container'>
-          <input type="text" placeholder="Nombre" onKeyUpCapture={ (e)=>{searchPokemon(e)} } />
+          <input type="text" placeholder="Nombre" onChange={ (e)=>{searchPokemon(e)} } />
         </div>
         
-        {loading && <p className='loading'>Cargando... <span><img src="/images/loading-poke.gif" alt="loading pokeball gif" /></span></p> }
+        {loading && <Loading /> }
 
         <ul className='pokemons-container'>
             {pokemonFilter && pokemonFound && pokemonFilter.map((pokemon, index) => (
@@ -66,6 +71,7 @@ export const Page = () => {
             ))}
             {!pokemonFound && <p className='missingno-text'>Pokémon no encontrado... ¿o si? <Link href="/missingno">🚚</Link></p>}
         </ul>
+        {!loading && pokemonFound && <Pagination pokemonData={paginationData} setPokemonFilter={setPokemonFilter} />}
     </>
   );
 };
