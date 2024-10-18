@@ -9,15 +9,16 @@ const Pagination = ({pokemonData, setPokemonFilter }) => {
     const nextPage = () => {
         if(currentPage < totalPages){
             setCurrentPage(currentPage + 1);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     }
 
     const prevPage = () => {
         if(currentPage > 1 ){
             setCurrentPage(currentPage - 1);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     } 
-    
 
     useEffect(() => {
       const indexOfLastPokemon = currentPage * pokemonPerPage;
@@ -38,9 +39,9 @@ const Pagination = ({pokemonData, setPokemonFilter }) => {
   return (
     <>
      <section className='pagination'>
-        <button onClick={prevPage}>Anterior</button>
+        <button onClick={prevPage}>Prev</button>
         <p>{currentPage}</p>
-        <button onClick={nextPage}>Siguiente</button>
+        <button onClick={nextPage}>Next</button>
      </section>
     </>
   )

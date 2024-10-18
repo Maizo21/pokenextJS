@@ -8,7 +8,6 @@ const Game = () => {
       <section className='game-container'>
         <iframe src="https://www.retrogames.cc/embed/45104-pokemon-exceeded-v3-3.html" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" ></iframe>
       </section>
-
     </>
 
   )

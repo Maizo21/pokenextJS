@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import DarkMode from '../DarkMode/DarkMode'
 
 const Navbar = () => {
   return (
@@ -16,6 +17,16 @@ const Navbar = () => {
                     Game
                     </Link>
                 </li>
+                <li>
+                    <Link href="/favorites">
+                    Favorites
+                    </Link>
+                </li>
+
+                <li className='dark-mode-toggle'>
+                    <DarkMode />
+                </li>
+
             </ul>
         </nav>  
     </>

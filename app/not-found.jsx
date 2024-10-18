@@ -4,8 +4,8 @@ import Link from 'next/link'
 const notFound = () => {
   return (
     <>
-        <h1>Parece que te perdiste</h1>
-        <Link href="/"> Volver al inicio</Link>
+        <h1> 404 - You are lost</h1>
+        <Link href="/"> Go back to home</Link>
     </>
 
   )

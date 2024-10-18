@@ -1,30 +1,21 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { getPokemonData } from './data/pokemon';
 import Loading from '../components/Loading/Loading';
 import Link from 'next/link'
+import FilterType from '../components/FilterType/FilterType';
 import Pagination from '../components/Pagintation/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPokemonData } from './data/store';
 
 export const Page = () => {
-  const [pokemonData, setPokemonData] = useState([]);
-  const [paginationData, setPaginationData] = useState([]);
+
+  const dispatch = useDispatch();
+  const { pokemonData, loading } = useSelector((state) => state.pokemon); 
+
   const [pokemonFilter, setPokemonFilter] = useState([]);
   const [pokemonFound, setPokemonFound] = useState(true);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPokemonData();
-      setPokemonData(data);
-
-      setPokemonFilter(pokemonData.slice(0, 20));
-      setLoading(false);
-      setPaginationData(data);
-    };
-    fetchData();
-  }, []);   
+  const [paginationData, setPaginationData] = useState([]);
 
   const searchPokemon = (e) => {
     console.log(e.target.value);
@@ -50,6 +41,15 @@ export const Page = () => {
     }
   };
 
+  useEffect(() => {
+    setPokemonFilter(pokemonData.slice(0, 20));
+    setPaginationData(pokemonData);
+  }, [pokemonData]);
+
+  useEffect(() => {
+    dispatch(fetchPokemonData());
+  }, [dispatch]);
+
   return (
     <>
         <h1>PokeNext</h1>
@@ -57,11 +57,15 @@ export const Page = () => {
         <div className='input-container'>
           <input type="text" placeholder="Nombre" onChange={ (e)=>{searchPokemon(e)} } />
         </div>
+
+        <div className='filter-container'>
+          <FilterType pokemonData={paginationData} setPokemonFilter={setPokemonFilter} />
+        </div>
         
         {loading && <Loading /> }
 
         <ul className='pokemons-container'>
-            {pokemonFilter && pokemonFound && pokemonFilter.map((pokemon, index) => (
+            {Array.isArray(pokemonFilter) && pokemonFound && pokemonFilter.map((pokemon, index) => (
                 <li key={index} className={`pokemon ${pokemon.url.split('pokemon/',-1)[1].replace('/','')}`}>
                   <Link href={`/pokemonDetail?id=${pokemon.url.split('pokemon/',-1)[1].replace('/','')}`}>
                     <p>{pokemon.name}</p>
