@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Loading from '../components/Loading/Loading';
 import Link from 'next/link'
 import FilterType from '../components/FilterType/FilterType';
-import Pagination from '../components/Pagintation/Pagination';
+import Pagination from '../components/Pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPokemonData } from './data/store';
 
